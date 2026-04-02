@@ -5,7 +5,7 @@ sidebar:
   order: 10
 ---
 
-import { WranglerConfig } from "~/components";
+import { Render, WranglerConfig } from "~/components";
 
 Frequently Asked Questions:
 
@@ -85,7 +85,7 @@ on image size and code execution time, among other factors.
 
 ## How do I use an existing container image?
 
-See [image management documentation](/containers/platform-details/image-management/#using-existing-images) for details.
+See [image management documentation](/containers/platform-details/image-management/#use-pre-built-container-images) for details.
 
 ## Is disk persistent? What happens to my disk when my container sleeps?
 
@@ -169,6 +169,8 @@ done
 
 exec /path/to/your-app
 ```
+
+<Render file="dind-network-host-caveat" product="containers" />
 
 For a complete working example, see the [Docker-in-Docker Containers example](https://github.com/th0m/containers-dind).
 

@@ -4,6 +4,7 @@ params:
   - magicWord
   - trafficSteeringPage
   - productName
+  - virtualNetworkName
   - tunnelEndpoints
   - routePrioritization
   - chooseWeights
@@ -13,11 +14,12 @@ params:
   - addTunnelsURL?
   - unifiedRoutingModeURL?
   - arrReferenceURL?
+  - routingTableName
 ---
 
 import { AnchorHeading, Aside, APIRequest, DashButton, Markdown, Render, TabItem, Tabs } from "~/components";
 
-Magic Networking uses a routing table to steer your traffic from Cloudflare's global network to your connected networks via next-hop. You can add entries to the Cloudflare Virtual Network routing table through static route configuration or routes learned from BGP peering (beta) (available over CNI with Dataplane v2, as well as IPsec and GRE tunnels).
+{props.virtualNetworkName} uses a routing table to steer your traffic from Cloudflare's global network to your connected networks via next-hop. You can add entries to the {props.routingTableName} through static route configuration or routes learned from BGP peering (beta) (available over CNI with Dataplane v2, as well as IPsec and GRE tunnels).
 
 Refer to <a href={props.trafficSteeringPage}>Traffic Steering</a> for more information about all the technical aspects related to:
 - Routes' priorities and weights
@@ -53,8 +55,8 @@ Refer to <a href={props.trafficSteeringPage}>Traffic Steering</a> for more infor
 
 <Tabs syncKey="dashPlusAPI"> <TabItem label="Dashboard">
 
-{/* Dashboard steps for WAN Tunnels (Cloudflare One dashboard) */}
-{ props.magicWord === "WAN Tunnels" && (
+{/* Dashboard steps for CF1 Cloudflare WAN (Cloudflare One dashboard) */}
+{ props.magicWord === "CF1 Cloudflare WAN" && (
 	<>
 	<Markdown
 		text={`
@@ -68,7 +70,7 @@ Refer to <a href={props.trafficSteeringPage}>Traffic Steering</a> for more infor
 }
 
 {/* Dashboard steps for Cloudflare WAN and Magic Transit (standalone dashboards) */}
-{ props.magicWord !== "WAN Tunnels" && (
+{ props.magicWord !== "CF1 Cloudflare WAN" && (
 	<>
 		<Markdown
 			text={`
@@ -174,8 +176,8 @@ Example:
 
 <Tabs syncKey="dashPlusAPI"> <TabItem label="Dashboard">
 
-{/* Dashboard steps for WAN Tunnels (Cloudflare One dashboard) */}
-{ props.magicWord === "WAN Tunnels" && (
+{/* Dashboard steps for CF1 Cloudflare WAN (Cloudflare One dashboard) */}
+{ props.magicWord === "CF1 Cloudflare WAN" && (
 	<>
 	<Markdown
 		text={`
@@ -189,7 +191,7 @@ Example:
 }
 
 {/* Dashboard steps for Cloudflare WAN and Magic Transit (standalone dashboards) */}
-{ props.magicWord !== "WAN Tunnels" && (
+{ props.magicWord !== "CF1 Cloudflare WAN" && (
 	<>
 	<Markdown
 		text={`
@@ -278,8 +280,8 @@ Example:
 
 <Tabs syncKey="dashPlusAPI"> <TabItem label="Dashboard">
 
-{/* Dashboard steps for WAN Tunnels (Cloudflare One dashboard) */}
-{ props.magicWord === "WAN Tunnels" && (
+{/* Dashboard steps for CF1 Cloudflare WAN (Cloudflare One dashboard) */}
+{ props.magicWord === "CF1 Cloudflare WAN" && (
 	<>
 	<Markdown
 		text={`
@@ -293,7 +295,7 @@ Example:
 }
 
 {/* Dashboard steps for Cloudflare WAN and Magic Transit (standalone dashboards) */}
-{ props.magicWord !== "WAN Tunnels" && (
+{ props.magicWord !== "CF1 Cloudflare WAN" && (
 	<>
 	<Markdown
 		text={`
@@ -412,9 +414,9 @@ BGP peering is available when using the following on-ramps:
 
 ### Choose an ASN for BGP peering
 
-The Cloudflare Virtual Network routing table is managed by the customer. You can select both the Cloudflare-side ASN (Autonomous System Number) and the ASN for your customer device. The customer device ASN can be 2-byte or 4-byte. <Markdown text={props.publicAsnMT} />
+The {props.routingTableName} is managed by the customer. You can select both the Cloudflare-side ASN (Autonomous System Number) and the ASN for your customer device. The customer device ASN can be 2-byte or 4-byte. <Markdown text={props.publicAsnMT} />
 
-By default, each BGP peering session uses the same Cloudflare-side ASN to represent peering with the Cloudflare Virtual Network routing table. This ASN is called the **CF Account ASN** and is set to `13335`. You can configure this to a private 2-byte ASN (any value between `64512` and `65534`, such as `65000`).
+By default, each BGP peering session uses the same Cloudflare-side ASN to represent peering with the {props.routingTableName}. This ASN is called the **CF Account ASN** and is set to `13335`. You can configure this to a private 2-byte ASN (any value between `64512` and `65534`, such as `65000`).
 
 :::note
 If you are setting up BGP over IPsec or GRE tunnels you cannot change this value.
@@ -422,8 +424,8 @@ If you are setting up BGP over IPsec or GRE tunnels you cannot change this value
 
 To set this ASN:
 
-{/* Dashboard steps for WAN Tunnels (Cloudflare One dashboard) */}
-{ props.magicWord === "WAN Tunnels" && (
+{/* Dashboard steps for CF1 Cloudflare WAN (Cloudflare One dashboard) */}
+{ props.magicWord === "CF1 Cloudflare WAN" && (
 	<>
 	<Markdown
 		text={`
@@ -439,7 +441,7 @@ To set this ASN:
 }
 
 {/* Dashboard steps for Cloudflare WAN and Magic Transit (standalone dashboards) */}
-{ props.magicWord !== "WAN Tunnels" && (
+{ props.magicWord !== "CF1 Cloudflare WAN" && (
 	<>
 		<Markdown
 			text={`
@@ -505,8 +507,12 @@ If you have already set up your Cloudflare account ASN, skip steps two and three
 
 #### Set up BGP for an interconnect
 
-{/* Dashboard steps for WAN Tunnels (Cloudflare One dashboard) */}
-{ props.magicWord === "WAN Tunnels" && (
+:::note
+BGP over CNI is in closed beta and is not currently available to new customers. If you are interested in BGP peering over CNI, contact your account team.
+:::
+
+{/* Dashboard steps for CF1 Cloudflare WAN (Cloudflare One dashboard) */}
+{ props.magicWord === "CF1 Cloudflare WAN" && (
 	<>
 	<Markdown
 		text={`
@@ -522,7 +528,7 @@ If you have already set up your Cloudflare account ASN, skip steps two and three
 }
 
 {/* Dashboard steps for Cloudflare WAN and Magic Transit (standalone dashboards) */}
-{ props.magicWord !== "WAN Tunnels" && (
+{ props.magicWord !== "CF1 Cloudflare WAN" && (
 	<>
 		<Markdown
 			text={`
@@ -542,7 +548,7 @@ If you have already set up your Cloudflare account ASN, skip steps two and three
 			inline={false}
 		/>
 
-		<DashButton url="/?to=/:account/interconnects" />
+		<DashButton url="/?to=/:account/magic-networks/connections/cni-tunnels" />
 	</>
 )
 }
@@ -559,15 +565,15 @@ If you have already set up your Cloudflare account ASN, skip steps two and three
 
 #### Set up BGP for IPsec/GRE tunnels
 
-{/* Dashboard steps for WAN Tunnels (Cloudflare One dashboard) */}
-{ props.magicWord === "WAN Tunnels" && (
+{/* Dashboard steps for CF1 Cloudflare WAN (Cloudflare One dashboard) */}
+{ props.magicWord === "CF1 Cloudflare WAN" && (
 	<>
 	<Markdown
 		text={`
 			1. Log in to <a href="https://one.dash.cloudflare.com/">Cloudflare One</a>, and go to **Networks**.
 			2. Go to **Routes** > **WAN configuration**.
 			3. In **Border Gateway Protocol (BGP) configuration**, select **Edit ASN** and enter your ASN.
-			4. Go to **Networks** > **Connectors** > **WAN Tunnels**.
+			4. Go to **Networks** > **Connectors** > **Cloudflare WAN**.
 		`}
 		inline={false}
 	/>
@@ -576,7 +582,7 @@ If you have already set up your Cloudflare account ASN, skip steps two and three
 }
 
 {/* Dashboard steps for Cloudflare WAN and Magic Transit (standalone dashboards) */}
-{ props.magicWord !== "WAN Tunnels" && (
+{ props.magicWord !== "CF1 Cloudflare WAN" && (
 	<>
 		<Markdown
 			text={`

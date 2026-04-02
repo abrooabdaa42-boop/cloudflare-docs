@@ -17,7 +17,7 @@ Connect a Ubiquiti UniFi Gateway to Cloudflare's network using Cloudflare WAN (f
 - Admin access to both Cloudflare and UniFi
 - Gather a **Magic Anycast IPv4** address from the **Leased IPs** section in the dashboard
 	- <DashButton url="/?to=/:account/ip-addresses/address-space" />
-	- Contact your account team if you do not see any IPs listed.
+	- Contact your account team if you do not see any IP addresses listed.
 
 ## 1. Configure Cloudflare WAN
 
@@ -32,7 +32,7 @@ Connect a Ubiquiti UniFi Gateway to Cloudflare's network using Cloudflare WAN (f
 ) : (
 	<Markdown
 		text={`1. Log in to <a href="https://one.dash.cloudflare.com/">Cloudflare One</a>, and go to **Networks**.
-2. Go to **Connectors** > **WAN Tunnels**, and select **Create**.`}
+2. Go to **Connectors** > **Cloudflare WAN**, and select **Create**.`}
 		inline={false}
 	/>
 )}
@@ -56,7 +56,7 @@ Connect a Ubiquiti UniFi Gateway to Cloudflare's network using Cloudflare WAN (f
 3. Configure the following settings:
    - **VPN Type:** `IPsec`.
    - **Name:** `Cloudflare-Magic-WAN`.
-   - **Pre-shared key:** Copy this key. You need it for the Cloudflare WAN tunnel.
+   - **Pre-shared key:** Copy this key. You need it for the IPsec tunnel.
    - **Local IP:** Select the WAN interface (for example, `WAN1`).
    - **Remote IP:** Enter the Cloudflare endpoint IP from [Step 1](#1-configure-cloudflare-wan).
    - **VPN Method:** Route Based.
@@ -100,7 +100,7 @@ Connect a Ubiquiti UniFi Gateway to Cloudflare's network using Cloudflare WAN (f
 ) : (
 	<Markdown
 		text={`1. Log in to <a href="https://one.dash.cloudflare.com/">Cloudflare One</a>, and go to **Networks**.
-2. In **WAN tunnels**, find the IPsec tunnel you have just created.`}
+2. In **Cloudflare WAN**, find the IPsec tunnel you have just created.`}
 		inline={false}
 	/>
 )}
@@ -163,7 +163,7 @@ Wait a few minutes, then access both Cloudflare and UniFi to verify the tunnel's
 	<Markdown
 		text={`1. Log in to <a href="https://one.dash.cloudflare.com/">Cloudflare One</a>, and go to **Insights**.
 2. Go to **Network visibility** > **WAN connector health**.
-3. Find the tunnel you have just created and make sure its status shows **Up**. Refer to [Check tunnel health in the dashboard](/cloudflare-one/networks/connectors/wan-tunnels/configuration/common-settings/check-tunnel-health-dashboard/) for more information.`}
+3. Find the tunnel you have just created and make sure its status shows **Up**. Refer to [Check tunnel health in the dashboard](/cloudflare-one/networks/connectors/cloudflare-wan/configuration/common-settings/check-tunnel-health-dashboard/) for more information.`}
 		inline={false}
 	/>
 )}
@@ -205,7 +205,7 @@ To route only specific devices through Cloudflare (UniFi Network Application):
 
 ## Next Steps
 
-- Use [Magic Firewall](/magic-firewall/) for network policies.
+- Use [Cloudflare Network Firewall](/cloudflare-network-firewall/) for network policies.
 - Configure a second tunnel for redundancy.
 - Monitor traffic in the Cloudflare WAN dashboard.
 

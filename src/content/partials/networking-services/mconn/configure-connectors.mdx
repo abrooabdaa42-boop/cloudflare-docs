@@ -57,7 +57,7 @@ In this page you will find instructions on how to configure {props.productName}.
 
 { props.magicWord === "hardware" && (
   <>
-		<p>You need to purchase <a href="https://www.cloudflare.com/magic-wan">Cloudflare WAN</a> before you can purchase and use {props.productName}. {props.productName} can function as your primary edge device for your network, or be deployed in-line with existing network gear.</p>
+		<p>You need to purchase <a href="https://www.cloudflare.com/magic-wan/">Cloudflare WAN</a> before you can purchase and use {props.productName}. {props.productName} can function as your primary edge device for your network, or be deployed in-line with existing network gear.</p>
 
 		<p>You also need to purchase {props.productName} before you can start configuring your settings in the Cloudflare dashboard. Contact your account representative to learn more about purchasing options for {props.productName}.</p>
 
@@ -342,8 +342,8 @@ You need to create a profile for your appliance before connecting it to the Inte
 
 To create a profile:
 
-{/* WAN Tunnels section */}
-{ props.dashName === "WAN Tunnels" && (
+{/* CF1 Cloudflare WAN section */}
+{ props.dashName === "CF1 Cloudflare WAN" && (
 	<>
 		<ol>
 			<li>Log in to <a href="https://one.dash.cloudflare.com/">Cloudflare One</a>, and go to <strong>Networks</strong>.</li>
@@ -354,7 +354,7 @@ To create a profile:
 }
 
 {/* Cloudflare WAN section */}
-{ props.dashName !== "WAN Tunnels" && (
+{ props.dashName !== "CF1 Cloudflare WAN" && (
 	<>
 		<ol>
 			<li>Go to the <strong>Connectors</strong> page.
@@ -526,7 +526,7 @@ After finishing your { props.magicWord === "virtual" ? props.productNameVirtual 
 
 		<p><em>{props.productName} connects to the router in the site, and only some of the LANs connect to Appliance.</em></p>
 
-		<p>Refer to <a href="/reference-architecture/diagrams/sase/magic-wan-connector-deployment/">{props.productName} deployment options</a> for a high-level explanation of the deployment options that make sense to most environments, as well as a few advanced use cases.</p>
+		<p>Refer to <a href="/reference-architecture/diagrams/sase/cloudflare-one-appliance-deployment/">{props.productName} deployment options</a> for a high-level explanation of the deployment options that make sense to most environments, as well as a few advanced use cases.</p>
 
 		<AnchorHeading title="Firewall settings required" depth={4} />
 		<p>If there is a firewall deployed upstream of {props.productName}, configure the firewall to allow the following traffic:</p>
@@ -575,8 +575,8 @@ After finishing your { props.magicWord === "virtual" ? props.productNameVirtual 
 
 When you are ready to connect your { props.magicWord === "virtual" ? props.productNameVirtual : props.productName } to the Cloudflare network:
 
-{/* Instructions for WAN Tunnels */}
-{ props.dashName === "WAN Tunnels" ? (
+{/* Instructions for CF1 Cloudflare WAN */}
+{ props.dashName === "CF1 Cloudflare WAN" ? (
 	<>
 		<Markdown
 	text={`
@@ -858,12 +858,12 @@ inline={false}
 
 To check the IPsec tunnels and static routes created by your { props.magicWord === "virtual" ? props.productNameVirtual : props.productName }:
 
-{ props.dashName === "WAN Tunnels" ? (
+{ props.dashName === "CF1 Cloudflare WAN" ? (
 	<>
 		<Markdown
 	text={`
 		1. Log in to <a href="https://one.dash.cloudflare.com/">Cloudflare One</a>, and go to **Connectors**.
-		2. In **WAN Tunnels** you can inspect the IPsec tunnels created by your ${props.magicWord === "virtual" ? props.productNameVirtual : props.productName }.
+		2. In **Cloudflare WAN** you can inspect the IPsec tunnels created by your ${props.magicWord === "virtual" ? props.productNameVirtual : props.productName }.
 		3. In **Routes** you can inspect the static routes created by your ${props.magicWord === "virtual" ? props.productNameVirtual : props.productName }.
 
 	`}

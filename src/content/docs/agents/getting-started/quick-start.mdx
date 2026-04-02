@@ -24,7 +24,7 @@ Build AI agents that persist, think, and act. Agents run on Cloudflare's global 
 <PackageManagers
 	type="create"
 	pkg="cloudflare@latest"
-	args={"-- --template cloudflare/agents-starter"}
+	args={"--template cloudflare/agents-starter"}
 />
 
 Then install dependencies and start the dev server:
@@ -89,7 +89,7 @@ export default {
 			new Response("Not found", { status: 404 })
 		);
 	},
-};
+} satisfies ExportedHandler<Env>;
 ```
 
 </TypeScriptExample>
@@ -102,7 +102,7 @@ Update `wrangler.jsonc` to register the agent:
 {
 	"name": "my-agent",
 	"main": "src/server.ts",
-	"compatibility_date": "2025-01-01",
+	"compatibility_date": "$today",
 	"compatibility_flags": ["nodejs_compat"],
 	"durable_objects": {
 		"bindings": [
