@@ -6,8 +6,6 @@ sidebar:
 description: Control where your containers run with regional and jurisdictional constraints.
 ---
 
-import { WranglerConfig } from "~/components";
-
 By default, containers run in the location nearest to the incoming request with a pre-fetched image. Use placement constraints to restrict where your containers run for data residency, compliance, or latency requirements.
 
 ## Regional constraints
@@ -39,19 +37,7 @@ When you specify both `jurisdiction` and `regions`, the regions must be valid fo
 
 ## Configure placement
 
-Set placement constraints in your Wrangler configuration:
-
-<WranglerConfig>
-
-```toml
-[containers.constraints]
-regions = ["ENAM", "WNAM"]
-jurisdiction = "fedramp"
-```
-
-</WranglerConfig>
-
-Or set placement constraints when creating or updating an application via the API:
+Set placement constraints when creating or updating an application via the API:
 
 ```json
 {
