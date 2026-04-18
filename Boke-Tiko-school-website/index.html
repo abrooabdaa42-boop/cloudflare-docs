@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Boke Tiko Secondary School - Mana Barumsaa Sadarkaa Lammaffaa Boke Tiko">
+    <title>Boke Tiko Secondary School | Mana Barumsaa Sadarkaa Lammaffaa Boke Tiko</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        .hero-bg {
+            background-image: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)), url('images/teachin-with-simulation.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+        .mobile-menu {
+            animation: slideDown 0.3s ease forwards;
+        }
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <!-- Navigation -->
+    <nav class="bg-emerald-800 text-white sticky top-0 z-50 shadow-md">
+        <div class="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
+            <!-- Logo + Name -->
+            <div class="flex items-center gap-3">
+                <img src="images/school-logo.jpg" 
+                     alt="Boke Tiko Secondary School Logo" 
+                     class="w-12 h-12 object-contain rounded-xl">
+                <div>
+                    <h1 class="text-xl font-bold">Boke Tiko</h1>
+                    <p class="text-xs text-emerald-200 -mt-1">Secondary School</p>
+                </div>
+            </div>
+
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex gap-8 text-sm font-medium">
+                <a href="index.html" class="hover:text-emerald-200 transition">Home</a>
+                <a href="about.html" class="hover:text-emerald-200 transition">About</a>
+                <a href="academics.html" class="hover:text-emerald-200 transition">Academics</a>
+                <a href="admissions.html" class="hover:text-emerald-200 transition">Admissions</a>
+                <a href="resources.html" class="hover:text-emerald-200 transition">Resources</a>
+                <a href="contact.html" class="hover:text-emerald-200 transition">Contact</a>
+            </div>
+
+            <!-- Mobile Hamburger Button -->
+            <button onclick="toggleMobileMenu()" id="menuButton" 
+                    class="md:hidden text-3xl p-2 focus:outline-none">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+
+        <!-- Simplified Mobile Menu -->
+        <div id="mobileMenu" class="hidden mobile-menu bg-emerald-700 md:hidden">
+            <div class="flex flex-col px-6 py-8 text-lg font-medium space-y-6">
+                <a href="index.html" onclick="toggleMobileMenu()" class="flex items-center gap-3 py-3 border-b border-emerald-600">
+                    <i class="fas fa-home w-6"></i> Home / Mana
+                </a>
+                <a href="about.html" onclick="toggleMobileMenu()" class="flex items-center gap-3 py-3 border-b border-emerald-600">
+                    <i class="fas fa-info-circle w-6"></i> About / Waa'ee
+                </a>
+                <a href="academics.html" onclick="toggleMobileMenu()" class="flex items-center gap-3 py-3 border-b border-emerald-600">
+                    <i class="fas fa-book w-6"></i> Academics / Barnoota
+                </a>
+                <a href="admissions.html" onclick="toggleMobileMenu()" class="flex items-center gap-3 py-3 border-b border-emerald-600">
+                    <i class="fas fa-user-plus w-6"></i> Admissions / Galmee
+                </a>
+                <a href="resources.html" onclick="toggleMobileMenu()" class="flex items-center gap-3 py-3 border-b border-emerald-600">
+                    <i class="fas fa-file-pdf w-6"></i> Resources / Qabeenya
+                </a>
+                <a href="contact.html" onclick="toggleMobileMenu()" class="flex items-center gap-3 py-3">
+                    <i class="fas fa-phone w-6"></i> Contact / Quunnamtii
+                </a>
+            </div>
+            
+            <!-- Close Button -->
+            <div class="px-6 pb-8">
+                <button onclick="toggleMobileMenu()" 
+                        class="w-full bg-emerald-600 hover:bg-emerald-500 text-white py-4 rounded-2xl font-medium flex items-center justify-center gap-2">
+                    <i class="fas fa-times"></i> Close Menu
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-bg h-screen flex items-center text-white">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <h1 class="text-5xl md:text-6xl font-bold mb-4">Boke Tiko Secondary School</h1>
+            <p class="text-2xl md:text-3xl mb-6">Mana Barumsaa Sadarkaa Lammaffaa Boke</p>
+            <p class="max-w-xl mx-auto text-lg mb-10">
+                Barnoota qulqullinaa fi guddinaa barattoota aanaa Boke kennuuf kan deddeebi'u.
+            </p>
+            <a href="contact.html" class="inline-block bg-white text-emerald-800 font-semibold px-10 py-5 rounded-full text-lg hover:bg-emerald-100 transition">
+                Quunnami / Contact Us
+            </a>
+        </div>
+    </section>
+
+    <!-- Rest of your content (stats, featured images, footer) remains the same as previous version -->
+
+    <script>
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            const button = document.getElementById('menuButton');
+            
+            menu.classList.toggle('hidden');
+            
+            // Optional: Change hamburger to X when open
+            if (!menu.classList.contains('hidden')) {
+                button.innerHTML = '<i class="fas fa-times"></i>';
+            } else {
+                button.innerHTML = '<i class="fas fa-bars"></i>';
+            }
+        }
+    </script>
+</body>
+</html>
